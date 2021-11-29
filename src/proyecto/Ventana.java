@@ -19,7 +19,7 @@ import javax.swing.border.TitledBorder;
  * @autor Esteban Andres Hernandez Cortes-esteban.cortes@correounivalle.edu.co
  */
 
-public class GUI_Ventana extends JFrame {
+public class Ventana1 extends JFrame {
     private JButton miFoto;
     private JButton miHobbie;
     private JButton misExpectativas;
@@ -33,7 +33,7 @@ public class GUI_Ventana extends JFrame {
     /**
      * GUI_Ventana class constructor
      */
-    public GUI_Ventana() {
+    public Ventana1() {
         //Default JFrame configuration
         this.initGUI();
         this.setTitle("Mi presentacion");
@@ -70,7 +70,7 @@ public class GUI_Ventana extends JFrame {
 
 
         misExpectativas = new JButton("Mis expectativas");
-        misExpectativas.addKeyListener(escucha);
+
 
 
         panelBotones = new JPanel();
@@ -98,8 +98,63 @@ public class GUI_Ventana extends JFrame {
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GUI_Ventana();
+                new Ventana1();
             }
         });
+    }
+
+    /**
+     * inner class that extends over the implements listener used by the GUI class
+     */
+
+    private class Escucha implements MouseListener {
+        private ImageIcon image;
+
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if (e.getComponent() == miHobbie && e.getClickCount() == 1) {
+                panelDatos.removeAll();
+
+                image = new ImageIcon(getClass().getResource("/recursos/hobby.jpg"));
+                labelimage.setIcon(image);
+                panelDatos.add(labelimage);
+            } else {
+                if (e.getComponent() == miFoto && e.getClickCount() == 2) {
+                    panelDatos.removeAll();
+                    image = new ImageIcon(getClass().getResource("/recursos/yo.png"));
+                    labelimage.setIcon(image);
+                    panelDatos.add(labelimage);
+                } else {
+
+                }
+
+
+            }
+
+            revalidate();
+            repaint();
+
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
+        }
     }
 }
