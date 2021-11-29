@@ -1,0 +1,105 @@
+package proyecto;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+
+/**
+ * This class is used to give a basic customization to our header, create and command the listening events with the mouse and the keyboard.
+ *
+ * @version @version v 0.5 date:21/28/2021
+ * @autor Esteban Andres Hernandez Cortes-esteban.cortes@correounivalle.edu.co
+ */
+
+public class GUI_Ventana extends JFrame {
+    private JButton miFoto;
+    private JButton miHobbie;
+    private JButton misExpectativas;
+    private JPanel panelBotones;
+    private JPanel panelDatos;
+    private proyecto.Titulos titulo;
+    private Escucha escucha;
+    private JLabel labelimage;
+    private JTextArea textoExpectativas;
+
+    /**
+     * GUI_Ventana class constructor
+     */
+    public GUI_Ventana() {
+        //Default JFrame configuration
+        this.initGUI();
+        this.setTitle("Mi presentacion");
+        this.setSize(800, 700);
+        this.setLocationRelativeTo((Component) null);
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    /**
+     * this method is used to configure the JComponents, listeners and control objects
+     */
+
+    private void initGUI() {
+
+        this.escucha = new Escucha();
+        titulo = new Titulos("Hola soy Esteban Cortés", Color.white);
+
+        this.add(titulo, BorderLayout.NORTH);
+        panelDatos = new JPanel();
+
+
+        panelDatos.setBackground(Color.gray);
+        panelDatos.setBorder(BorderFactory.createTitledBorder(null, "", TitledBorder.CENTER, TitledBorder.CENTER, new Font("Arial", Font.PLAIN, 15), Color.BLACK));
+        this.add(panelDatos, BorderLayout.CENTER);
+
+
+        miFoto = new JButton("Este soy yo");
+        miFoto.addMouseListener(escucha);
+
+
+        miHobbie = new JButton("Mi hobby");
+        miHobbie.addMouseListener(escucha);
+
+
+        misExpectativas = new JButton("Mis expectativas");
+        misExpectativas.addKeyListener(escucha);
+
+
+        panelBotones = new JPanel();
+
+
+        panelBotones.add(miHobbie);
+        panelBotones.add(miFoto);
+        panelBotones.add(misExpectativas);
+        this.add(panelBotones, BorderLayout.SOUTH);
+        labelimage = new JLabel();
+        labelimage.setSize(800, 700);
+        labelimage.setVerticalAlignment(JLabel.CENTER);
+        labelimage.setHorizontalAlignment(JLabel.CENTER);
+
+
+        textoExpectativas = new JTextArea(12, 5);
+    }
+
+    /**
+     * Main process of the java program
+     *
+     * @param args object used in order to send input data from command line when this program is executed by console
+     */
+
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new GUI_Ventana();
+            }
+        });
+    }
+}
