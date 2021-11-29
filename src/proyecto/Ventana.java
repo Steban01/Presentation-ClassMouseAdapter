@@ -19,7 +19,7 @@ import javax.swing.border.TitledBorder;
  * @autor Esteban Andres Hernandez Cortes-esteban.cortes@correounivalle.edu.co
  */
 
-public class Ventana1 extends JFrame {
+class Ventana1 extends JFrame {
     private JButton miFoto;
     private JButton miHobbie;
     private JButton misExpectativas;
@@ -70,7 +70,7 @@ public class Ventana1 extends JFrame {
 
 
         misExpectativas = new JButton("Mis expectativas");
-
+        misExpectativas.addKeyListener(escucha);
 
 
         panelBotones = new JPanel();
@@ -107,7 +107,7 @@ public class Ventana1 extends JFrame {
      * inner class that extends over the implements listener used by the GUI class
      */
 
-    private class Escucha implements MouseListener {
+    private class Escucha implements MouseListener, KeyListener {
         private ImageIcon image;
 
 
@@ -156,5 +156,34 @@ public class Ventana1 extends JFrame {
         public void mouseExited(MouseEvent e) {
 
         }
+        @Override
+        public void keyTyped(KeyEvent e) {
+            if (e.getKeyChar() == 'm') {
+                panelDatos.removeAll();
+                textoExpectativas.setText("Conozco un poco de java, pero no soy experto en hacer programas con este\n" +
+                        " lenguaje.Espero que con este curso me permitea desarrollar y crear programas \n" +
+                        "con el lenguaje, espero que con este aprendizaje que adquirirá,me ayude en mi\n" +
+                        " carrera profesional y en mi futuro como programador.");
+                panelDatos.add(textoExpectativas);
+                textoExpectativas.setBackground(null);
+                textoExpectativas.setFont(new Font("Dialog", 3, 20));
+
+            }
+            revalidate();
+            repaint();
+
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+
+        }
     }
+
+
 }
